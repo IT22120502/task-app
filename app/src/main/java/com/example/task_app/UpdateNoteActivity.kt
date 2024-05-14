@@ -28,10 +28,14 @@ class UpdateNoteActivity : AppCompatActivity() {
         binding.updateTitleEditText.setText(note.title)
         binding.updateContentEditText.setText(note.content)
 
+        /*if (!note.imagePath.isNullOrEmpty()) {
+            Glide.with(this).load(note.imagePath).into(binding.imageView)
+        }*/
+
         binding.updateSaveButton.setOnClickListener{
             val newTitle = binding.updateTitleEditText.text.toString()
             val newContent = binding.updateContentEditText.text.toString()
-            val updatedNote = Note(noteId, newTitle, newContent)
+            val updatedNote = Note(noteId, newTitle, newContent, note.imagePath)
             db.updateNote(updatedNote)
             finish()
             Toast.makeText(this,"Changes Saved..!", Toast.LENGTH_SHORT).show()
